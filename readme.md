@@ -9,6 +9,10 @@
 
 ## How to use
 
+git Download
+
+composer Download
+
 git clone https://github.com/Hison731/fileupload.git
 
 composer install
