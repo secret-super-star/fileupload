@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use App\Setting;
+use App\Video;
+use App\User;
+use Config;
 
 class HomeController extends Controller
 {
@@ -14,6 +19,10 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $settings = Setting::first();
+        Config::set('filesystems.disks.custom-ftp.host',$settings->ftp_url);
+        Config::set('filesystems.disks.custom-ftp.username',$settings->ftp_username);
+        Config::set('filesystems.disks.custom-ftp.password',$settings->ftp_password);
     }
 
     /**
@@ -23,6 +32,29 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $videos = Video::all();
+        return view('dashboard', compact('videos'));
+    }
+
+    public function upload()
+    {
+        return view('upload');
+    }
+
+    public function delete($id)
+    {
+      // dump($id);
+        $vdieo = Video::find($id);
+
+        $settings = Setting::first();
+
+        $target_url = $settings->ftp_path."/playlistm3u8/".$vdieo->title;
+
+        Storage::disk('custom-ftp')->delete($target_url);
+
+        $vdieo->delete();
+        \Session::put('success', 'Update success');
+        $videos = Video::all();
+        return view('dashboard', compact('videos'));
     }
 }

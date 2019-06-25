@@ -64,6 +64,24 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'custom-ftp' => [
+
+            'driver' => 'ftp',
+
+            'host' => 'ftp.example.com',
+
+            'username' => 'myusername',
+
+            'password' => 'mypassword',
+
+            // Optional FTP Settings...
+            'port'     => 21,
+            // 'root' => '/Example',
+            // 'passive'  => true,
+            // 'ssl'      => true,
+            // 'timeout'  => 30,
+        ],
+
     ],
 
 ];
