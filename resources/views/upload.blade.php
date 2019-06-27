@@ -75,17 +75,18 @@ $(function () {
         done: function (e, data) {
             console.log(data.result.success)
             if(data.result.success){
-              $('.progress-bar').css(
-                  'width',
-                  0 + '%'
-              );
-              $.notify({
-            		title: "Update Complete",
-            		message: "",
-            		icon: 'fa fa-check'
-            	},{
-            		type: "success"
-            	});
+              // $('.progress-bar').css(
+              //     'width',
+              //     0 + '%'
+              // );
+              // $.notify({
+            	// 	title: "Update Complete",
+            	// 	message: "",
+            	// 	icon: 'fa fa-check'
+            	// },{
+            	// 	type: "success"
+            	// });
+              window.location.href="{{ route('dashboard') }}"
             } else {
               $('.progress-bar').css(
                   'width',
@@ -107,7 +108,7 @@ $(function () {
               0 + '%'
           );
           $.notify({
-            title: "Update failed.",
+            title: "Upload failed.",
             message: "",
             icon: 'fa fa-check'
           },{

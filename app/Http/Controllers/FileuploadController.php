@@ -56,6 +56,7 @@ class FileuploadController extends Controller
                       'success' => true,
                   ));
       } else {
+        unlink($file_url);
         return Response::json(array(
                       'success' => false,
                   ));
