@@ -19,6 +19,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('approve');
         $settings = Setting::first();
         Config::set('filesystems.disks.custom-ftp.host',$settings->ftp_url);
         Config::set('filesystems.disks.custom-ftp.username',$settings->ftp_username);

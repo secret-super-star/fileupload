@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use Auth;
 
-class UsersContoller extends Controller
+class ApproveController extends Controller
 {
     //
     public function __construct()
@@ -15,23 +14,13 @@ class UsersContoller extends Controller
         $this->middleware('checkrole');
     }
 
-    public function index()
+    public function approve($id)
     {
-        $users = User::all();
-        return view('user', compact('users'));
-    }
-
-    public function delete($id)
-    {
-      // dump($id);
         $user = User::find($id);
+        $user->approved = 1;
+        $user->save();
 
-        $user->delete();
-
-        \Session::put('success', 'Update success');
         $users = User::all();
         return view('user', compact('users'));
     }
-
-
 }

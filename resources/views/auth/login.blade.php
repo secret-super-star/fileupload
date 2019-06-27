@@ -8,9 +8,14 @@
 		<h1>File Upload</h1>
 	</div>
 	<div class="login-box">
-		<form class="login-form" action="{{ route('login') }}" method="post">
+		<form class="login-form" action="{{ route('login') }}" method="post"  style="position:relative; ">
       @csrf
-
+			@if ($message = Session::get('error'))
+          <div class="alert alert-danger alert-dismissible" id="myAlert">
+              <strong>Approve required.</strong>
+          </div>
+          <?php \Session::forget('error');?>
+      @endif
 			<h3 class="login-head">
 				<i class="fa fa-lg fa-fw fa-user"></i>SIGN IN
 			</h3>

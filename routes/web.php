@@ -21,8 +21,13 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::get('/delete/{id}', 'HomeController@delete')->name('delete');
 
 Route::get('/users', 'UsersContoller@index')->name('users');
+Route::get('/deleteuser/{id}', 'UsersContoller@delete')->name('deleteuser');
 
 Route::get('/upload', 'HomeController@upload')->name('upload');
+
+Route::get('/approve/{id}', 'ApproveController@approve')->name('approve');
+
+Route::get('/error', 'ErrorController@index')->name('error');
 
 Route::get('/settings', 'SettingContoller@index')->name('settings');
 Route::Post('/settings', 'SettingContoller@update')->name('settings');

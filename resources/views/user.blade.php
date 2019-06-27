@@ -14,6 +14,12 @@
   </div>
   <div class="row">
     <div class="col-md-12">
+      @if ($message = Session::get('success'))
+          <div class="alert alert-success alert-dismissible" id="myAlert">
+              <strong>User removed.</strong>
+          </div>
+          <?php \Session::forget('success');?>
+      @endif
       <div class="tile">
         <div class="tile-body table-responsive">
           <table class="table table-hover table-bordered" id="sampleTable">
@@ -23,7 +29,7 @@
                 <th>Name</th>
                 <th>email</th>
                 <th style="width: 100px">Role</th>
-                <th style="width: 100px">Edit</th>
+                <th style="width: 100px">appove</th>
                 <th style="width: 100px">Delete</th>
               </tr>
             </thead>
@@ -39,9 +45,13 @@
                   @else
                     <td>User</td>
                   @endif
+                  @if($user->approved == 1)
+                    <td><button class="btn btn-success btn-sm" type="button">Approved</button></td>
+                  @else
+                    <td><a class="btn btn-warning btn-sm" href="{{ route('approve', $user->id) }}">Approve</a></td>
+                  @endif
 
-                  <td><button class="btn btn-warning btn-sm" type="button">Edit</button></td>
-                  <td><button class="btn btn-danger btn-sm" type="button">Delete</button></td>
+                  <td><a class="btn btn-danger btn-sm" href="{{ route('deleteuser', $user->id) }}">Delete</a></td>
                 </tr>
                 @endforeach
 

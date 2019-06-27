@@ -16,10 +16,12 @@ class FileuploadController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('auth');
         $settings = Setting::first();
         Config::set('filesystems.disks.custom-ftp.host',$settings->ftp_url);
         Config::set('filesystems.disks.custom-ftp.username',$settings->ftp_username);
         Config::set('filesystems.disks.custom-ftp.password',$settings->ftp_password);
+
     }
     //
     public function fileupload(Request $request){
@@ -35,24 +37,30 @@ class FileuploadController extends Controller
 
       $settings = Setting::first();
 
-      $target_url = $settings->ftp_path."/playlistm3u8/".$file_name;
+      $target_url = $settings->ftp_path."/".$file_name;
       $localFile = File::get($file_url);
-      Storage::disk('custom-ftp')->put($target_url, $localFile);
+      $upload_result = Storage::disk('custom-ftp')->put($target_url, $localFile);
 
+      if($upload_result){
+        $video = new Video;
 
-      $video = new Video;
+        $video->title = $file_name;
+        $video->real_title = $file->getClientOriginalName();
+        $video->path = $settings->ftp_url.$target_url."/playlist.m3u8";
 
-      $video->title = $file_name;
-      $video->real_title = $file->getClientOriginalName();
-      $video->path = $settings->ftp_url.$target_url;
+        $video->save();
+        // $this->ftpupload();
+        unlink($file_url);
 
-      $video->save();
-      // $this->ftpupload();
-      unlink($file_url);
+        return Response::json(array(
+                      'success' => true,
+                  ));
+      } else {
+        return Response::json(array(
+                      'success' => false,
+                  ));
+      }
 
-      return Response::json(array(
-                    'success' => true,
-                ));
     }
 
     // public function ftpupload(){

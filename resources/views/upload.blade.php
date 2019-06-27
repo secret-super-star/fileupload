@@ -73,17 +73,46 @@ $(function () {
             );
         },
         done: function (e, data) {
-            $('.progress-bar').css(
-                'width',
-                0 + '%'
-            );
-            $.notify({
-          		title: "Update Complete",
-          		message: "",
-          		icon: 'fa fa-check'
-          	},{
-          		type: "success"
-          	});
+            console.log(data.result.success)
+            if(data.result.success){
+              $('.progress-bar').css(
+                  'width',
+                  0 + '%'
+              );
+              $.notify({
+            		title: "Update Complete",
+            		message: "",
+            		icon: 'fa fa-check'
+            	},{
+            		type: "success"
+            	});
+            } else {
+              $('.progress-bar').css(
+                  'width',
+                  0 + '%'
+              );
+              $.notify({
+            		title: "Update Complete",
+            		message: "",
+            		icon: 'fa fa-check'
+            	},{
+            		type: "alert"
+            	});
+            }
+
+        },
+        error: function (e,data){
+          $('.progress-bar').css(
+              'width',
+              0 + '%'
+          );
+          $.notify({
+            title: "Update failed.",
+            message: "",
+            icon: 'fa fa-check'
+          },{
+            type: "danger"
+          });
         }
     })
 });
