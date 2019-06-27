@@ -33,7 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $videos = Video::all();
+        $videos = Video::orderBy('created_at', 'DESC')->get();
         return view('dashboard', compact('videos'));
     }
 

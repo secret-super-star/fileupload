@@ -41,7 +41,7 @@
                   <td>{{$video->title}}</td>
                   <td>{{$video->real_title}}</td>
                   <td>{{$video->path}}</td>
-                  <td>{{$video->created_at}}</td>
+                  <td>{{date("Y-m-d",strtotime($video->created_at))}}</td>
                   <td>
                     <input type="hidden" name="" id="copy_path" value="{{$video->path}}">
                     <button class="btn btn-success btn-sm copy_button" type="button">Copy URL</button>
