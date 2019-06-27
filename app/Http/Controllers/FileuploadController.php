@@ -46,7 +46,7 @@ class FileuploadController extends Controller
 
         $video->title = $file_name;
         $video->real_title = $file->getClientOriginalName();
-        $video->path = $settings->ftp_url.$target_url."/playlist.m3u8";
+        $video->path = "https://".$settings->ftp_url.$target_url."/playlist.m3u8";
 
         $video->save();
         // $this->ftpupload();
