@@ -49,7 +49,7 @@ class HomeController extends Controller
 
         $settings = Setting::first();
 
-        $target_url = $settings->ftp_path."/playlistm3u8/".$vdieo->title;
+        $target_url = $settings->ftp_path."/".$vdieo->title;
 
         Storage::disk('custom-ftp')->delete($target_url);
 
