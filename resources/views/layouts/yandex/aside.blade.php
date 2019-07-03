@@ -7,7 +7,12 @@
     </div>
   </div>
   <ul class="app-menu">
-    <li><a class="app-menu__item {{ (request()->is('yandex')) ? 'active' : '' }}" href="{{route('yandex')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+    <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">Dashboard</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+      <ul class="treeview-menu">
+        <li><a class="treeview-item " href="{{ route('dashboard') }}"><i class="icon fa fa-dashboard"></i> Upload Dashboard</a></li>
+        <li><a class="treeview-item {{ (request()->is('yandex')) ? 'active' : '' }}" href="{{ route('yandex') }}"><i class="icon fa fa-dashboard"></i> Yandex Dashboard</a></li>
+      </ul>
+    </li>
     <li><a class="app-menu__item {{ (request()->is('generate')) ? 'active' : '' }}" href="{{route('generate')}}"><i class="app-menu__icon fa fa-upload"></i><span class="app-menu__label">Generate Link</span></a></li>
   </ul>
 </aside>
