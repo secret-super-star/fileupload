@@ -22,9 +22,9 @@
   <body class="app sidebar-mini rtl">
     <!-- Navbar-->
 
-		@include('layouts.header')
+		@include('layouts.yandex.header')
 
-		@include('layouts.aside')
+		@include('layouts.yandex.aside')
 
 		@yield('content')
 

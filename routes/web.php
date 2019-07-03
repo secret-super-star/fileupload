@@ -18,12 +18,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+
+Route::get('/yandex', 'YandexController@index')->name('yandex');
+
 Route::get('/delete/{id}', 'HomeController@delete')->name('delete');
 
 Route::get('/users', 'UsersContoller@index')->name('users');
 Route::get('/deleteuser/{id}', 'UsersContoller@delete')->name('deleteuser');
 
 Route::get('/upload', 'HomeController@upload')->name('upload');
+
+Route::get('/generate', 'YandexController@generate')->name('generate');
+Route::Post('/generate', 'YandexController@generate_link')->name('generate');
 
 Route::get('/approve/{id}', 'ApproveController@approve')->name('approve');
 

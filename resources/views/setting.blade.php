@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.upload.app')
 
 @section('content')
 <main class="app-content">
@@ -42,7 +42,7 @@
               <label class="control-label">Ftp Password</label>
               <input class="form-control" type="text" placeholder="" name='ftp_password' value="{{ isset($setting) ? $setting->ftp_password : ''  }}" required>
             </div>
-            
+
             <div class="tile-footer">
               <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Save</button>
             </div>

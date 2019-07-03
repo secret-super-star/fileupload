@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.upload.app')
 
 @section('content')
 <main class="app-content">

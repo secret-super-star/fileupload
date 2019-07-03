@@ -77,6 +77,12 @@ body {
   background-color: #FFF;
 }
 
+
+.change_page{
+  color: #000;
+  line-height: 50px;
+}
+
 [tabindex="-1"]:focus {
   outline: 0 !important;
 }
