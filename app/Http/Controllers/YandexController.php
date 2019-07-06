@@ -30,5 +30,10 @@ class YandexController extends Controller
     {
         return redirect(route('yandex'));
     }
-    
+
+    public function player(){
+
+      return view('player.player');
+    }
+
 }

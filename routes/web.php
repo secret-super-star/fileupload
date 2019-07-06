@@ -39,3 +39,5 @@ Route::get('/settings', 'SettingContoller@index')->name('settings');
 Route::Post('/settings', 'SettingContoller@update')->name('settings');
 
 Route::Post('/fileupload', 'FileuploadController@fileupload')->name('fileupload');
+
+Route::get('/player', 'YandexController@player')->name('player');
